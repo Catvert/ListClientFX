@@ -1,0 +1,6 @@
+
+out/artifacts/ListClientFX_jar/data/customers\.json
+
+out/artifacts/ListClientFX_jar/data/workers\.json
+
+*.json

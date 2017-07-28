@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_listclientfx" default="compile.module.listclientfx">
+  <dirname property="module.listclientfx.basedir" file="${ant.file.module_listclientfx}"/>
+  
+  <property name="module.jdk.home.listclientfx" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.listclientfx" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.listclientfx" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.listclientfx" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="listclientfx.output.dir" value="${module.listclientfx.basedir}/out/production/ListClientFX"/>
+  <property name="listclientfx.testoutput.dir" value="${module.listclientfx.basedir}/out/test/ListClientFX"/>
+  
+  <path id="listclientfx.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="listclientfx.module.production.classpath">
+    <path refid="${module.jdk.classpath.listclientfx}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+    <path refid="library.no.tornado:tornadofx:1.7.8.classpath"/>
+    <path refid="library.jfoenix.classpath"/>
+    <path refid="library.com.github.salomonbrys.kotson:kotson:2.5.0.classpath"/>
+  </path>
+  
+  <path id="listclientfx.runtime.production.module.classpath">
+    <pathelement location="${listclientfx.output.dir}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+    <path refid="library.no.tornado:tornadofx:1.7.8.classpath"/>
+    <path refid="library.jfoenix.classpath"/>
+    <path refid="library.com.github.salomonbrys.kotson:kotson:2.5.0.classpath"/>
+  </path>
+  
+  <path id="listclientfx.module.classpath">
+    <path refid="${module.jdk.classpath.listclientfx}"/>
+    <pathelement location="${listclientfx.output.dir}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+    <path refid="library.no.tornado:tornadofx:1.7.8.classpath"/>
+    <path refid="library.jfoenix.classpath"/>
+    <path refid="library.com.github.salomonbrys.kotson:kotson:2.5.0.classpath"/>
+  </path>
+  
+  <path id="listclientfx.runtime.module.classpath">
+    <pathelement location="${listclientfx.testoutput.dir}"/>
+    <pathelement location="${listclientfx.output.dir}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+    <path refid="library.no.tornado:tornadofx:1.7.8.classpath"/>
+    <path refid="library.jfoenix.classpath"/>
+    <path refid="library.com.github.salomonbrys.kotson:kotson:2.5.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.listclientfx">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.listclientfx">
+    <patternset refid="excluded.from.module.listclientfx"/>
+  </patternset>
+  
+  <path id="listclientfx.module.sourcepath">
+    <dirset dir="${module.listclientfx.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.listclientfx" depends="compile.module.listclientfx.production,compile.module.listclientfx.tests" description="Compile module ListClientFX"/>
+  
+  <target name="compile.module.listclientfx.production" depends="register.custom.compilers" description="Compile module ListClientFX; production classes">
+    <mkdir dir="${listclientfx.output.dir}"/>
+    <javac2 destdir="${listclientfx.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.listclientfx}/javac">
+      <compilerarg line="${compiler.args.listclientfx}"/>
+      <bootclasspath refid="listclientfx.module.bootclasspath"/>
+      <classpath refid="listclientfx.module.production.classpath"/>
+      <src refid="listclientfx.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.listclientfx"/>
+    </javac2>
+    
+    <copy todir="${listclientfx.output.dir}">
+      <fileset dir="${module.listclientfx.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.listclientfx.tests" depends="register.custom.compilers,compile.module.listclientfx.production" description="compile module ListClientFX; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.listclientfx" description="cleanup module">
+    <delete dir="${listclientfx.output.dir}"/>
+    <delete dir="${listclientfx.testoutput.dir}"/>
+  </target>
+</project>
