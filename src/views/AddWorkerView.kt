@@ -1,10 +1,8 @@
 package views
 
-import tornadofx.*
-
 import Worker
-import javafx.scene.control.Dialog
 import javafx.scene.control.TextField
+import tornadofx.*
 import java.util.*
 
 class AddWorkerView(workerBuildFinish: (worker: Worker) -> Unit) : View("Ajouter un employé") {
@@ -13,7 +11,7 @@ class AddWorkerView(workerBuildFinish: (worker: Worker) -> Unit) : View("Ajouter
     override val root = form {
         fieldset("Informations") {
             field("Nom") {
-               nameField = textfield {  }
+                nameField = textfield { }
             }
         }
 

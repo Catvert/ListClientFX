@@ -1,32 +1,40 @@
 package views
 
-import com.jfoenix.controls.JFXTimePicker
-import javafx.beans.property.*
-import javafx.collections.FXCollections
-import javafx.collections.ObservableList
-import javafx.util.Callback
-import tornadofx.*
-import java.time.format.DateTimeFormatter
-
 import Customer
+import Data
+import LCApp
 import Performance
+import Worker
+import com.jfoenix.controls.JFXTimePicker
+import javafx.beans.property.Property
+import javafx.beans.property.ReadOnlyObjectWrapper
+import javafx.beans.property.ReadOnlyStringWrapper
+import javafx.beans.property.SimpleObjectProperty
+import javafx.collections.ObservableList
+import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
+import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
+import javafx.util.Callback
+import tornadofx.*
 import java.awt.Desktop
 import java.io.File
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import kotlin.Comparator
 
 private enum class TabMode {
     Workers, Customers
 }
 
 class MainView : View("Liste des clients") {
-    private var customerSelected: Customer? = null
+    private var customerSelected: Property<Customer?> = SimpleObjectProperty(null)
+    private var workerSelected: Property<Worker?> = SimpleObjectProperty(null)
 
-    private val showPerformances = FXCollections.observableArrayList<Performance>()
+    private val showPerformances = SortedFilteredList<Performance>()
 
     private val centerVbox = vbox {
         spacing = 10.0
@@ -46,27 +54,24 @@ class MainView : View("Liste des clients") {
 
     private var tabMode = TabMode.Workers
 
-    val workersView = SearchListView(Data.workers,true, {
+    val workersView = SearchListView(Data.workers, true, {
         val addWorkerView = AddWorkerView({
             Data.workers.add(it)
-
-            updateListsView()
         })
         openInternalWindow(addWorkerView)
     }, {
+        workerSelected.value = it
         updatePerformance(Data.getPerformances(it))
     })
 
     val customersView = SearchListView(Data.customers, true, {
         val addCustomerView = AddCustomerView({
             Data.customers.add(it)
-
-            updateListsView()
         })
 
         openInternalWindow(addCustomerView)
     }, {
-        customerSelected = it
+        customerSelected.value = it
 
         updatePerformance(Data.getPerformances(it))
         rightForm.clear()
@@ -75,7 +80,7 @@ class MainView : View("Liste des clients") {
             field("Nom") {
                 textfield(it.name) {
                     textProperty().addListener { _, _, _ ->
-                        if(!text.isBlank())
+                        if (!text.isBlank())
                             it.name = text
                     }
                 }
@@ -134,13 +139,21 @@ class MainView : View("Liste des clients") {
             field("Dossier") {
                 button("Ouvrir") {
                     action {
-                        if(LCApp.customersFolder != null) {
+                        if (LCApp.customersFolder != null) {
                             try {
                                 Desktop.getDesktop().open(File(LCApp.customersFolder!!.path + "/${it.name}"))
                             } catch(e: Exception) {
                                 println(e)
 
-                                Alert(Alert.AlertType.ERROR, "Le dossier du client ${it.name} n'existe pas !").show()
+                                if(LCApp.customersFolder?.exists()?: false) {
+                                    val alert = Alert(Alert.AlertType.INFORMATION, "Le dossier du client n'existe pas ! Voulez-vous créer un répertoire pour ce client dans le dossier des clients ?", ButtonType.YES, ButtonType.NO)
+                                    alert.dialogPane.minHeight = Region.USE_PREF_SIZE
+                                    val result = alert.showAndWait()
+
+                                    if(result.isPresent && result.get() == ButtonType.YES) {
+                                        LCApp.createDirectoryCustomer(customerSelected.value!!)
+                                    }
+                                }
                             }
                         }
                     }
@@ -152,57 +165,67 @@ class MainView : View("Liste des clients") {
     private val performancesTable = let {
         val datePattern = "dd-MM-yyyy HH:mm:ss"
 
-        val table = TableView(showPerformances)
+        showPerformances.sortedItems.comparator = Comparator<Performance>({ p, p1 -> p.startDate.compareTo(p1.startDate) }).reversed()
+
+        val table = TableView(showPerformances.sortedItems)
         table.prefHeight = 1000.0
         table.columns.add(firstColumnPerformance)
+        table.placeholder = Label("Aucune prestation disponible")
 
         table.column<Performance, LocalDateTime>("Début") {
             it.tableColumn.prefWidth = 150.0
 
-            it.tableColumn.setCellFactory { object : TableCell<Performance, LocalDateTime>() {
-                override fun updateItem(item: LocalDateTime?, empty: Boolean) {
-                    super.updateItem(item, empty)
+            it.tableColumn.setCellFactory {
+                object : TableCell<Performance, LocalDateTime>() {
+                    override fun updateItem(item: LocalDateTime?, empty: Boolean) {
+                        super.updateItem(item, empty)
 
-                    if(item == null && empty) {
-                        text = ""
-                    }
-                    else {
-                        text = item!!.format(DateTimeFormatter.ofPattern(datePattern))
+                        if (item == null && empty) {
+                            text = ""
+                        } else {
+                            text = item!!.format(DateTimeFormatter.ofPattern(datePattern))
+                        }
                     }
                 }
-            } }
+            }
 
             ReadOnlyObjectWrapper<LocalDateTime>(it.value.startDate)
         }
         table.column<Performance, LocalDateTime>("Fin") {
             it.tableColumn.prefWidth = 150.0
 
-            it.tableColumn.setCellFactory {  object : TableCell<Performance, LocalDateTime>() {
-                override fun updateItem(item: LocalDateTime?, empty: Boolean) {
-                    super.updateItem(item, empty)
+            it.tableColumn.setCellFactory {
+                object : TableCell<Performance, LocalDateTime>() {
+                    override fun updateItem(item: LocalDateTime?, empty: Boolean) {
+                        super.updateItem(item, empty)
 
-                    if(item == null && empty) {
-                        text = ""
-                    }
-                    else {
-                        text = item!!.format(DateTimeFormatter.ofPattern(datePattern))
+                        if (item == null && empty) {
+                            text = ""
+                        } else {
+                            text = item!!.format(DateTimeFormatter.ofPattern(datePattern))
+                        }
                     }
                 }
-            } }
+            }
 
             ReadOnlyObjectWrapper<LocalDateTime>(it.value.endDate)
         }
         table.column<Performance, String>("Durée de la prestation") {
+            it.tableColumn.prefWidth = 125.0
+
             val duration = it.value.duration()
 
             val hours = duration.toHours()
             val minutes = if (hours == 0L) duration.toMinutes() else duration.toMinutes() - hours * 60
 
-            ReadOnlyStringWrapper("$hours h $minutes m")
+            ReadOnlyStringWrapper("$hours h $minutes m -> ${String.format("%.2f", duration.toMinutes() / 60.0)}")
         }
-        table.column("Commentaire", Performance::comment)
+        val commentColumn = table.column("Commentaire", Performance::comment)
+        commentColumn.prefWidth = 200.0
 
-        table.column<Performance, HBox>("Modifier") {
+        table.column<Performance, HBox>("Supprimer") {
+            it.tableColumn.prefWidth = 50.0
+
             val hbox = HBox(10.0)
 
             val removeButton = Button("-")
@@ -213,9 +236,13 @@ class MainView : View("Liste des clients") {
 
                 val result = alert.showAndWait()
 
-                if(result.isPresent && result.get() == ButtonType.YES) {
+                if (result.isPresent && result.get() == ButtonType.YES) {
                     Data.performances.remove(it.value)
-                    updatePerformance(Data.getPerformances(customerSelected))
+
+                    when (tabMode) {
+                        TabMode.Workers -> updatePerformance(Data.getPerformances(workerSelected.value))
+                        TabMode.Customers -> updatePerformance(Data.getPerformances(customerSelected.value))
+                    }
                 }
             }
 
@@ -239,27 +266,41 @@ class MainView : View("Liste des clients") {
                     when (tabMode) {
                         TabMode.Workers -> {
                             firstColumnPerformance.text = "Client"
+                            firstColumnPerformance.prefWidth = 175.0
 
                             centerVbox.add(performancesTable)
                         }
                         TabMode.Customers -> {
                             firstColumnPerformance.text = "Employé"
+                            firstColumnPerformance.prefWidth = 100.0
 
                             centerVbox.hbox {
+                                customerSelected.addListener { _, _, _ ->
+                                    isDisable = customerSelected.value == null
+                                }
+
+                                isDisable = true
+
+                                alignment = Pos.CENTER
+                                minWidth = 700.0
+                                paddingTop = 10.0
                                 spacing = 10.0
 
-                                val workerCombobox = combobox(values = Data.workers.toList()) { }
+                                val workerCombobox = combobox(values = Data.workers.toList()) { promptText = "Employé" }
 
-                                label("Début")
+                                val date = datepicker {
+                                    prefWidth = 120.0
+                                    value = LocalDate.now()
+                                }
 
                                 val startPicker = JFXTimePicker()
+                                startPicker.promptText = "Début"
                                 startPicker.setIs24HourView(true)
                                 startPicker.prefWidth = 100.0
                                 add(startPicker)
 
-                                label("Fin")
-
                                 val endPicker = JFXTimePicker()
+                                endPicker.promptText = "Fin"
                                 endPicker.setIs24HourView(true)
                                 endPicker.prefWidth = 100.0
                                 add(endPicker)
@@ -270,21 +311,23 @@ class MainView : View("Liste des clients") {
 
                                 button("+") {
                                     action {
-                                        if(workerCombobox.selectedItem != null) {
-                                            if(startPicker.value != null && endPicker.value != null && startPicker.value <= endPicker.value) {
-                                                Data.performances.add(Performance(
-                                                        workerCombobox.selectedItem!!.uuid,
-                                                        customerSelected!!.uuid,
-                                                        startPicker.value.atDate(LocalDate.now()),
-                                                        endPicker.value.atDate(LocalDate.now()), commentField.text))
-                                                updatePerformance(Data.getPerformances(customerSelected))
+                                        if (customerSelected.value != null) {
+                                            if (workerCombobox.selectedItem != null) {
+                                                if (startPicker.value != null && endPicker.value != null && startPicker.value <= endPicker.value) {
+                                                    Data.performances.add(Performance(
+                                                            workerCombobox.selectedItem!!.uuid,
+                                                            customerSelected.value!!.uuid,
+                                                            startPicker.value.atDate(date.value),
+                                                            endPicker.value.atDate(date.value), commentField.text))
+                                                    updatePerformance(Data.getPerformances(customerSelected.value))
+                                                } else {
+                                                    Alert(Alert.AlertType.INFORMATION, "Les dates sélectionnées sont invalides !", ButtonType.OK).show()
+                                                }
+                                            } else {
+                                                Alert(Alert.AlertType.INFORMATION, "Aucun employé sélectionné pour la prestation !", ButtonType.OK).show()
                                             }
-                                            else {
-                                                Alert(Alert.AlertType.INFORMATION, "Les dates sélectionnées sont invalides !", ButtonType.OK).show()
-                                            }
-                                        }
-                                        else {
-                                            Alert(Alert.AlertType.INFORMATION, "Aucun employé sélectionné pour la prestation !", ButtonType.OK).show()
+                                        } else {
+                                            Alert(Alert.AlertType.INFORMATION, "Aucun client sélectionné ! (Double clique requis)", ButtonType.OK).show()
                                         }
                                     }
                                 }
@@ -319,12 +362,12 @@ class MainView : View("Liste des clients") {
         showPerformances.addAll(performances)
     }
 
-    private fun updateListsView() {
-        workersView.updateSearchList()
-        customersView.updateSearchList()
-    }
-
     init {
-        this.root.setPrefSize(1100.0, 400.0)
+        root.setPrefSize(1250.0, 400.0)
+
+        customerSelected.addListener { _, _, _ ->
+            if (customerSelected.value == null)
+                customersView.listView.selectionModel.clearSelection()
+        }
     }
 }

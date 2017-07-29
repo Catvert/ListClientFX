@@ -1,16 +1,18 @@
 package views
 
-import javafx.collections.FXCollections
-import javafx.collections.ObservableList
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
+import javafx.scene.control.ListView
 import javafx.scene.layout.Priority
 import javafx.scene.layout.VBox
 import tornadofx.*
+import java.util.*
 
-class SearchListView<T>(val list: ObservableList<T>, addAddRemoveButtons: Boolean, private val onAddButtonClicked: () -> Unit, private val onSelected: (value: T) -> Unit) : View() {
-    private val searchList = FXCollections.observableArrayList<T>(list)
+class SearchListView<T>(val list: SortedFilteredList<T>, addAddRemoveButtons: Boolean, private val onAddButtonClicked: () -> Unit, private val onSelected: (value: T) -> Unit) : View() {
     private var lastSelected: T? = null
+
+    var listView by singleAssign<ListView<T>>()
+        private set
 
     override val root = vbox {
 
@@ -20,24 +22,9 @@ class SearchListView<T>(val list: ObservableList<T>, addAddRemoveButtons: Boolea
             textfield {
                 promptText = "Rechercher.."
 
-                textProperty().addListener { _, _, new ->
-                    if (new.isBlank())
-                        updateSearchList(list)
-                    else {
-                        searchList.clear()
-
-                        list.forEach { item ->
-                            val splits = item.toString().split(" ")
-
-                            for (split in splits) {
-                                if (split.startsWith(new, true)) {
-                                    searchList += item
-                                    break
-                                }
-                            }
-                        }
-                    }
-                }
+                list.filterWhen(textProperty(), { query, item ->
+                    item.toString().split(" ").any { it.startsWith(query, true) }
+                })
             }
 
             if (addAddRemoveButtons) {
@@ -56,7 +43,7 @@ class SearchListView<T>(val list: ObservableList<T>, addAddRemoveButtons: Boolea
             }
         }
 
-        val list = listview(searchList) {
+        listView = listview(list.sortedItems) {
             onUserDelete {
                 showConfirmationDeleteDialog(it)
             }
@@ -67,8 +54,7 @@ class SearchListView<T>(val list: ObservableList<T>, addAddRemoveButtons: Boolea
             }
         }
 
-        VBox.setVgrow(list, Priority.ALWAYS)
-
+        VBox.setVgrow(listView, Priority.ALWAYS)
     }
 
     private fun showConfirmationDeleteDialog(toDelete: T) {
@@ -77,24 +63,12 @@ class SearchListView<T>(val list: ObservableList<T>, addAddRemoveButtons: Boolea
 
         val result = confirmation.showAndWait()
 
-        if(result.isPresent && result.get() == ButtonType.YES) {
+        if (result.isPresent && result.get() == ButtonType.YES) {
             list.remove(toDelete)
-            updateSearchList(list)
         }
     }
 
-    private fun updateSearchList(newList: ObservableList<T>) {
-        searchList.clear()
-        searchList.addAll(newList)
-
-        FXCollections.sort(searchList, { c, c1 -> c.toString().compareTo(c1.toString()) })
-    }
-
-    fun updateSearchList() {
-        updateSearchList(list)
-    }
-
     init {
-        FXCollections.sort(searchList, { c, c1 -> c.toString().compareTo(c1.toString()) })
+        list.sortedItems.comparator = Comparator { t, t1 -> t.toString().compareTo(t1.toString()) }
     }
 }

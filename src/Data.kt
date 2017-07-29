@@ -5,15 +5,19 @@ import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
+import tornadofx.*
 import java.io.FileReader
 import java.io.FileWriter
 import java.time.LocalDateTime
-import java.time.Month
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 class Data {
     companion object {
+        val workers = SortedFilteredList<Worker>()
+        val customers = SortedFilteredList<Customer>()
+        val performances: ObservableList<Performance> = FXCollections.observableArrayList()
+
         private var actualWorkerUUID: UUID = UUID.randomUUID()
 
         private val customerGson = GsonBuilder().registerTypeAdapter<Customer> {
@@ -77,7 +81,7 @@ class Data {
                 name("isCompany").value(it.isCompany)
                 endObject()
             }
-        }.create()
+        }.setPrettyPrinting().create()
 
 
         private val performanceGson = GsonBuilder().registerTypeAdapter<Performance> {
@@ -127,7 +131,7 @@ class Data {
 
                 endObject()
             }
-        }.create()
+        }.setPrettyPrinting().create()
 
         private val workerGson = GsonBuilder().registerTypeAdapter<Worker> {
             read {
@@ -164,12 +168,7 @@ class Data {
 
                 endObject()
             }
-        }.create()
-
-
-        val workers: ObservableList<Worker> = FXCollections.observableArrayList()
-        val customers: ObservableList<Customer> = FXCollections.observableArrayList()
-        val performances: ObservableList<Performance> = FXCollections.observableArrayList()
+        }.setPrettyPrinting().create()
 
         fun getPerformances(worker: Worker?): ObservableList<Performance> {
             val list = FXCollections.observableArrayList<Performance>()
@@ -195,6 +194,7 @@ class Data {
 
         fun saveData() {
             val customerWriter = JsonWriter(FileWriter(LCApp.customersJsonFile))
+
             customerWriter.beginArray()
             customers.forEach {
                 customerGson.toJson(it, Customer::class.java, customerWriter)
@@ -212,13 +212,15 @@ class Data {
         }
 
         fun loadData() {
-            val customersReader = JsonReader(FileReader("data/customers.json"))
-            customers.addAll(customerGson.fromJson<List<Customer>>(customersReader))
-            customersReader.close()
+            if(LCApp.customersJsonFile.exists() && LCApp.workersJsonFile.exists()) {
+                val customersReader = JsonReader(FileReader(LCApp.customersJsonFile))
+                customers.addAll(customerGson.fromJson<List<Customer>>(customersReader))
+                customersReader.close()
 
-            val workersReader = JsonReader(FileReader("data/workers.json"))
-            workers.addAll(workerGson.fromJson<List<Worker>>(workersReader))
-            workersReader.close()
+                val workersReader = JsonReader(FileReader(LCApp.workersJsonFile))
+                workers.addAll(workerGson.fromJson<List<Worker>>(workersReader))
+                workersReader.close()
+            }
         }
     }
 }
