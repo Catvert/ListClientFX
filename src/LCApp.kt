@@ -16,10 +16,12 @@ class LCApp : App(MainView::class, Styles::class) {
     companion object {
         var customersFolder: File? = null
 
-        val workersJsonFile = File("data/workers.json")
-        val customersJsonFile = File("data/customers.json")
-        val prefJsonFile = File("data/prefs.json")
-        val lockFile = File("data/lock.lck")
+        val dataDirectory = File("data")
+        val workersJsonFile = File(dataDirectory.absolutePath + "/workers.json")
+        val customersJsonFile = File(dataDirectory.absolutePath + "/customers.json")
+        val prefJsonFile = File(dataDirectory.absolutePath + "/prefs.json")
+        val lockFile = File(dataDirectory.absolutePath + "/lock.lck")
+
 
         fun createDirectoryCustomer(customer: Customer) {
             if(customersFolder != null && customersFolder!!.exists()) {
@@ -49,8 +51,13 @@ class LCApp : App(MainView::class, Styles::class) {
             alert.showAndWait()
             canSave = false
         } else {
-            lockFile.createNewFile()
-            lockFile.deleteOnExit()
+            try {
+                if(!dataDirectory.exists())
+                    dataDirectory.mkdir()
+                lockFile.createNewFile()
+                lockFile.deleteOnExit()
+            } catch(e: IOException) { println(e) }
+
         }
 
         Data.loadData()
@@ -67,7 +74,7 @@ class LCApp : App(MainView::class, Styles::class) {
                     }
                 }
                 prefReader.endObject()
-            } catch(e: Exception) {
+            } catch(e: IOException) {
                 println(e)
             } finally {
                 prefReader.close()
@@ -84,7 +91,9 @@ class LCApp : App(MainView::class, Styles::class) {
     override fun start(stage: Stage) {
         super.start(stage)
 
-        addStageIcon(Image(FileInputStream("data/icon.png")))
+        try {
+            addStageIcon(Image(FileInputStream("icon.png")))
+        } catch(e: IOException) { println(e) }
     }
 
     override fun stop() {
