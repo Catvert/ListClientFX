@@ -48,7 +48,7 @@ class SearchListView<T>(val list: SortedFilteredList<T>, addAddRemoveButtons: Bo
                 showConfirmationDeleteDialog(it)
             }
 
-            onUserSelect {
+            onUserSelect(clickCount = 1) {
                 lastSelected = it
                 onSelected(it)
             }

@@ -178,6 +178,9 @@ class Data {
                     list += it
             }
 
+            val c = Comparator<Performance>({ p, p1 -> p.startDate.compareTo(p1.startDate) })
+            FXCollections.sort(list, c.reversed())
+
             return list
         }
 

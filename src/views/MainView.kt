@@ -6,6 +6,7 @@ import LCApp
 import Performance
 import Worker
 import com.jfoenix.controls.JFXTimePicker
+import javafx.beans.binding.Bindings
 import javafx.beans.property.Property
 import javafx.beans.property.ReadOnlyObjectWrapper
 import javafx.beans.property.ReadOnlyStringWrapper
@@ -45,8 +46,8 @@ class MainView : View("Liste des clients") {
         val column = TableColumn<Performance, String>("Client")
         column.cellValueFactory = Callback {
             when (tabMode) {
-                TabMode.Workers -> ReadOnlyStringWrapper(it.value.customer()?.name)
-                TabMode.Customers -> ReadOnlyStringWrapper(it.value.worker()?.name)
+                TabMode.Workers -> ReadOnlyStringWrapper(it.value.customer()?.name?: "Client supprimé")
+                TabMode.Customers -> ReadOnlyStringWrapper(it.value.worker()?.name?: "Employé supprimé")
             }
         }
         column
@@ -64,7 +65,7 @@ class MainView : View("Liste des clients") {
         updatePerformance(Data.getPerformances(it))
     })
 
-    val customersView = SearchListView(Data.customers, true, {
+    val customersView: SearchListView<Customer> = SearchListView(Data.customers, true, {
         val addCustomerView = AddCustomerView({
             Data.customers.add(it)
         })
@@ -163,18 +164,53 @@ class MainView : View("Liste des clients") {
     })
 
     private val performancesTable = let {
-        val datePattern = "dd-MM-yyyy HH:mm:ss"
+        val datePattern = "HH:mm"
 
-        showPerformances.sortedItems.comparator = Comparator<Performance>({ p, p1 -> p.startDate.compareTo(p1.startDate) }).reversed()
-
-        val table = TableView(showPerformances.sortedItems)
+        val table = TableView(showPerformances.items)
         table.prefHeight = 1000.0
         table.columns.add(firstColumnPerformance)
         table.placeholder = Label("Aucune prestation disponible")
+        table.columnResizePolicy = SmartResize.POLICY
+
+        table.contextmenu {
+            item("Supprimer cette prestation").action {
+                if(table.selectedItem != null) {
+                    val alert = Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir supprimer cette prestation ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL)
+                    alert.title = "Confirmation de la suppression"
+                    alert.dialogPane.minHeight = Region.USE_PREF_SIZE
+                    val result = alert.showAndWait()
+
+                    if (result.isPresent && result.get() == ButtonType.YES) {
+                        Data.performances.remove(table.selectedItem)
+
+                        when (tabMode) {
+                            TabMode.Workers -> updatePerformance(Data.getPerformances(workerSelected.value))
+                            TabMode.Customers -> updatePerformance(Data.getPerformances(customerSelected.value))
+                        }
+                    }
+                }
+            }
+        }
+
+        table.column<Performance, LocalDate>("Date") {
+            it.tableColumn.setCellFactory {
+                object : TableCell<Performance, LocalDate>() {
+                    override fun updateItem(item: LocalDate?, empty: Boolean) {
+                        super.updateItem(item, empty)
+
+                        if (item == null && empty) {
+                            text = ""
+                        } else {
+                            text = item!!.toString()
+                        }
+                    }
+                }
+            }
+
+            ReadOnlyObjectWrapper<LocalDate>(it.value.startDate.toLocalDate())
+        }
 
         table.column<Performance, LocalDateTime>("Début") {
-            it.tableColumn.prefWidth = 150.0
-
             it.tableColumn.setCellFactory {
                 object : TableCell<Performance, LocalDateTime>() {
                     override fun updateItem(item: LocalDateTime?, empty: Boolean) {
@@ -192,8 +228,6 @@ class MainView : View("Liste des clients") {
             ReadOnlyObjectWrapper<LocalDateTime>(it.value.startDate)
         }
         table.column<Performance, LocalDateTime>("Fin") {
-            it.tableColumn.prefWidth = 150.0
-
             it.tableColumn.setCellFactory {
                 object : TableCell<Performance, LocalDateTime>() {
                     override fun updateItem(item: LocalDateTime?, empty: Boolean) {
@@ -211,8 +245,6 @@ class MainView : View("Liste des clients") {
             ReadOnlyObjectWrapper<LocalDateTime>(it.value.endDate)
         }
         table.column<Performance, String>("Durée de la prestation") {
-            it.tableColumn.prefWidth = 125.0
-
             val duration = it.value.duration()
 
             val hours = duration.toHours()
@@ -220,36 +252,7 @@ class MainView : View("Liste des clients") {
 
             ReadOnlyStringWrapper("$hours h $minutes m -> ${String.format("%.2f", duration.toMinutes() / 60.0)}")
         }
-        val commentColumn = table.column("Commentaire", Performance::comment)
-        commentColumn.prefWidth = 200.0
-
-        table.column<Performance, HBox>("Supprimer") {
-            it.tableColumn.prefWidth = 50.0
-
-            val hbox = HBox(10.0)
-
-            val removeButton = Button("-")
-
-            removeButton.action {
-                val alert = Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de vouloir supprimer cette prestation ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL)
-                alert.title = "Confirmation de la suppression"
-
-                val result = alert.showAndWait()
-
-                if (result.isPresent && result.get() == ButtonType.YES) {
-                    Data.performances.remove(it.value)
-
-                    when (tabMode) {
-                        TabMode.Workers -> updatePerformance(Data.getPerformances(workerSelected.value))
-                        TabMode.Customers -> updatePerformance(Data.getPerformances(customerSelected.value))
-                    }
-                }
-            }
-
-            hbox.add(removeButton)
-
-            ReadOnlyObjectWrapper<HBox>(hbox)
-        }
+        table.column("Commentaire", Performance::comment)
 
         table
     }
@@ -263,23 +266,20 @@ class MainView : View("Liste des clients") {
                     centerVbox.clear()
                     rightForm.clear()
 
+                    workerSelected.value = null
+                    customerSelected.value = null
+
                     when (tabMode) {
                         TabMode.Workers -> {
                             firstColumnPerformance.text = "Client"
-                            firstColumnPerformance.prefWidth = 175.0
 
                             centerVbox.add(performancesTable)
                         }
                         TabMode.Customers -> {
                             firstColumnPerformance.text = "Employé"
-                            firstColumnPerformance.prefWidth = 100.0
 
                             centerVbox.hbox {
-                                customerSelected.addListener { _, _, _ ->
-                                    isDisable = customerSelected.value == null
-                                }
-
-                                isDisable = true
+                                disableProperty().bind(Bindings.createBooleanBinding({ customerSelected.value == null }, arrayOf(customerSelected)))
 
                                 alignment = Pos.CENTER
                                 minWidth = 700.0
@@ -319,7 +319,9 @@ class MainView : View("Liste des clients") {
                                                             customerSelected.value!!.uuid,
                                                             startPicker.value.atDate(date.value),
                                                             endPicker.value.atDate(date.value), commentField.text))
-                                                    updatePerformance(Data.getPerformances(customerSelected.value))
+
+                                                    updatePerformance(Data.getPerformances(customerSelected.value!!))
+
                                                 } else {
                                                     Alert(Alert.AlertType.INFORMATION, "Les dates sélectionnées sont invalides !", ButtonType.OK).show()
                                                 }
@@ -327,7 +329,7 @@ class MainView : View("Liste des clients") {
                                                 Alert(Alert.AlertType.INFORMATION, "Aucun employé sélectionné pour la prestation !", ButtonType.OK).show()
                                             }
                                         } else {
-                                            Alert(Alert.AlertType.INFORMATION, "Aucun client sélectionné ! (Double clique requis)", ButtonType.OK).show()
+                                            Alert(Alert.AlertType.INFORMATION, "Aucun client sélectionné !", ButtonType.OK).show()
                                         }
                                     }
                                 }

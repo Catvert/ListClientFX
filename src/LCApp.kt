@@ -1,7 +1,6 @@
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
 import javafx.scene.control.Alert
-import javafx.scene.control.ButtonType
 import javafx.scene.image.Image
 import javafx.scene.layout.Region
 import javafx.stage.DirectoryChooser
@@ -10,7 +9,7 @@ import tornadofx.*
 import views.MainView
 import java.io.*
 
-class LCApp : App(MainView::class, Styles::class) {
+class LCApp : App(MainView::class) {
     private var canSave = true
 
     companion object {

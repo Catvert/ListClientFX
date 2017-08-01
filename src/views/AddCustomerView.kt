@@ -48,20 +48,25 @@ class AddCustomerView(customerBuildFinish: (customer: Customer) -> Unit) : View(
         }
         button("Ajouter") {
             action {
-                val customer = Customer(UUID.randomUUID(), nameField.text, addressField.text, townField.text, tvaField.text, phoneField.text, emailField.text, infoField.text, isCompanyCkBox.isSelected)
+                if(nameField.text.isNotBlank()) {
+                    val customer = Customer(UUID.randomUUID(), nameField.text, addressField.text, townField.text, tvaField.text, phoneField.text, emailField.text, infoField.text, isCompanyCkBox.isSelected)
 
-                if(LCApp.customersFolder?.exists()?: false) {
-                    val alert = Alert(Alert.AlertType.INFORMATION, "Voulez-vous créer un répertoire pour ce client dans le dossier des clients ?", ButtonType.YES, ButtonType.NO)
-                    alert.dialogPane.minHeight = Region.USE_PREF_SIZE
-                    val result = alert.showAndWait()
+                    if(LCApp.customersFolder?.exists()?: false) {
+                        val alert = Alert(Alert.AlertType.INFORMATION, "Voulez-vous créer un répertoire pour ce client dans le dossier des clients ?", ButtonType.YES, ButtonType.NO)
+                        alert.dialogPane.minHeight = Region.USE_PREF_SIZE
+                        val result = alert.showAndWait()
 
-                    if(result.isPresent && result.get() == ButtonType.YES) {
-                        LCApp.createDirectoryCustomer(customer)
+                        if(result.isPresent && result.get() == ButtonType.YES) {
+                            LCApp.createDirectoryCustomer(customer)
+                        }
                     }
-                }
 
-                customerBuildFinish(customer)
-                close()
+                    customerBuildFinish(customer)
+                    close()
+                }
+                else {
+                    Alert(Alert.AlertType.ERROR, "Merci de spécifier un nom au client", ButtonType.OK).show()
+                }
             }
         }
     }
