@@ -7,95 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26b3ac05-4f78-47cf-bb3a-2bbabbab6b67" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ListClientFX/META-INF/ListClientFX.kotlin_module" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ListClientFX/PerformanceKt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ListClientFX/Styles.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$commentColumn$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Styles.kt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/Data$Companion$workerGson$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/Data$Companion$workerGson$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/Data$Companion$workerGson$1$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/Data$Companion$workerGson$1$2.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/lock.lck" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/Data$Companion.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/Data$Companion.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/Data.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/Data.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/LCApp$Companion.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/LCApp$Companion.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/LCApp.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/LCApp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/Performance.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/Performance.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/AddCustomerView$root$1$2$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/AddCustomerView$root$1$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/AddCustomerView$root$1$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/AddCustomerView$root$1$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/AddCustomerView$root$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/AddCustomerView$root$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$$special$$inlined$column$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$$special$$inlined$column$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$$special$$inlined$let$lambda$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$$special$$inlined$let$lambda$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$$special$$inlined$let$lambda$2$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$$special$$inlined$let$lambda$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$$special$$inlined$let$lambda$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$$special$$inlined$let$lambda$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$centerVbox$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$centerVbox$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$1$addCustomerView$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$1$addCustomerView$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$1$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$1$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$2$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$2$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$2$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$3$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$3$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$3$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$3$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$3.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$4$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$4$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$4$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$4$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$4.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$5$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$5$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$5$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$5$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$5.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$6$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$6$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$6$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$6$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$6.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$7$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$7$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$7$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$7$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$7.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$8$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$8$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$8$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$8$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$8.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$9$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$9$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$9$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$9$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$9.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$customersView$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$2$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$2$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$2$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$3$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$3$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$3$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$3$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$3.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$4.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$performancesTable$1$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$rightForm$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$rightForm$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$2$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$commentField$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$commentField$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$date$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$date$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$workerCombobox$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1$workerCombobox$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$3.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$root$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$workersView$1$addWorkerView$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$workersView$1$addWorkerView$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$workersView$1.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$workersView$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$workersView$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView$workersView$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/MainView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/SearchListView$root$1$2.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/SearchListView$root$1$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ListClientFX/views/TabMode.class" afterPath="$PROJECT_DIR$/out/production/ListClientFX/views/TabMode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ListClientFX.iml" afterPath="$PROJECT_DIR$/ListClientFX.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Data.kt" afterPath="$PROJECT_DIR$/src/Data.kt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LCApp.kt" afterPath="$PROJECT_DIR$/src/LCApp.kt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Performance.kt" afterPath="$PROJECT_DIR$/src/Performance.kt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/AddCustomerView.kt" afterPath="$PROJECT_DIR$/src/views/AddCustomerView.kt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/MainView.kt" afterPath="$PROJECT_DIR$/src/views/MainView.kt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/SearchListView.kt" afterPath="$PROJECT_DIR$/src/views/SearchListView.kt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -117,10 +33,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainView.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainView.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/MainView.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7277">
+            <state relative-caret-position="26">
               <caret line="312" column="44" lean-forward="false" selection-start-line="312" selection-start-column="44" selection-end-line="312" selection-end-column="44" />
               <folding>
                 <element signature="e#15#805#0" expanded="true" />
@@ -141,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Data.kt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Data.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Data.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4160">
-              <caret line="172" column="75" lean-forward="false" selection-start-line="172" selection-start-column="75" selection-end-line="172" selection-end-column="75" />
+            <state relative-caret-position="129">
+              <caret line="192" column="13" lean-forward="true" selection-start-line="192" selection-start-column="13" selection-end-line="192" selection-end-column="13" />
               <folding>
                 <element signature="e#0#463#0" expanded="true" />
               </folding>
@@ -188,7 +104,7 @@
       <file leaf-file-name="AddCustomerView.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/AddCustomerView.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1552">
+            <state relative-caret-position="1560">
               <caret line="67" column="109" lean-forward="false" selection-start-line="67" selection-start-column="109" selection-end-line="67" selection-end-column="109" />
               <folding>
                 <element signature="e#15#250#0" expanded="true" />
@@ -251,11 +167,11 @@
         <option value="$PROJECT_DIR$/src/DateStringComparator.kt" />
         <option value="$PROJECT_DIR$/src/Customer.kt" />
         <option value="$PROJECT_DIR$/src/views/SearchListView.kt" />
-        <option value="$PROJECT_DIR$/src/Data.kt" />
         <option value="$PROJECT_DIR$/src/views/AddCustomerView.kt" />
         <option value="$PROJECT_DIR$/src/Performance.kt" />
         <option value="$PROJECT_DIR$/src/LCApp.kt" />
         <option value="$PROJECT_DIR$/src/views/MainView.kt" />
+        <option value="$PROJECT_DIR$/src/Data.kt" />
       </list>
     </option>
   </component>
@@ -265,7 +181,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-25" />
     <option name="y" value="174" />
     <option name="width" value="1900" />
@@ -286,8 +202,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -310,8 +228,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -509,14 +425,15 @@
       <workItem from="1501429518536" duration="606000" />
       <workItem from="1501609302705" duration="5620000" />
       <workItem from="1501616274220" duration="2430000" />
+      <workItem from="1501671230174" duration="114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64092000" />
+    <option name="totallyTimeSpent" value="64206000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-25" y="174" width="1920" height="1050" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1050" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -527,12 +444,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22086571" sideWeight="0.7483974" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.078801334" sideWeight="0.25160256" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.078801334" sideWeight="0.25160256" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23023504" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23290598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -884,16 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4160">
-          <caret line="172" column="75" lean-forward="false" selection-start-line="172" selection-start-column="75" selection-end-line="172" selection-end-column="75" />
-          <folding>
-            <element signature="e#0#463#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/no/tornado/tornadofx/1.7.9-SNAPSHOT/tornadofx-1.7.9-SNAPSHOT-sources.jar!/tornadofx/SmartResize.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -903,7 +810,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/AddCustomerView.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1552">
+        <state relative-caret-position="1560">
           <caret line="67" column="109" lean-forward="false" selection-start-line="67" selection-start-column="109" selection-end-line="67" selection-end-column="109" />
           <folding>
             <element signature="e#15#250#0" expanded="true" />
@@ -927,14 +834,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Styles.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Styles.kt" />
     <entry file="file://$PROJECT_DIR$/src/LCApp.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -945,10 +845,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/MainView.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7277">
+        <state relative-caret-position="26">
           <caret line="312" column="44" lean-forward="false" selection-start-line="312" selection-start-column="44" selection-end-line="312" selection-end-column="44" />
           <folding>
             <element signature="e#15#805#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="192" column="13" lean-forward="true" selection-start-line="192" selection-start-column="13" selection-end-line="192" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#463#0" expanded="true" />
           </folding>
         </state>
       </provider>

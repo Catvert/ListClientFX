@@ -199,7 +199,7 @@ class Data {
             val customerWriter = JsonWriter(FileWriter(LCApp.customersJsonFile))
 
             customerWriter.beginArray()
-            customers.forEach {
+            customers.items.forEach {
                 customerGson.toJson(it, Customer::class.java, customerWriter)
             }
             customerWriter.endArray()
@@ -207,7 +207,7 @@ class Data {
 
             val workersWriter = JsonWriter(FileWriter(LCApp.workersJsonFile))
             workersWriter.beginArray()
-            workers.forEach {
+            workers.items.forEach {
                 workerGson.toJson(it, Worker::class.java, workersWriter)
             }
             workersWriter.endArray()
